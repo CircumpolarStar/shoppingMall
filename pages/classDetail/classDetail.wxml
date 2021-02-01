@@ -1,0 +1,67 @@
+<!--pages/classDetail/classDetail.wxml-->
+<view class="body" style="overflow:{{overFlow}}">
+	<view class="top">
+		<input type="text" value="" auto-focus="true" placeholder="提示语" bindtap="onSearch">
+		<text class="search_btn" bindtap="onSearch">搜索</text>
+		</input>
+		<image src="/font/record2.png" class="record"></image>
+	</view>
+	<view class="screenBar">
+		<view class="screenBox" wx:for="{{screenBox}}" bindtap="onScreen" data-index="{{index}}">
+			<view class="screen">{{item.title}} 
+				<image src="{{item.img}}"></image>
+			</view>
+		</view>
+		<view class="seleScnBg" style="left:{{seleScnSeat}}"></view>
+	</view>
+	<view class="screenText" style="display:{{seleScn}}">
+		<view class="text">
+			<text wx:for="{{seleScnText}}" bindtap="onText" style="color:{{item.color}};border-bottom:1px solid {{item.color}}" data-text="{{item.text}}" data-index="{{index}}">{{item.text}}</text>
+		</view>
+		<view class="btn_re" bindtap="toRe">重置</view>
+		<view class="btn_ok" bindtap="toScreen">确定</view>
+	</view>
+	<view class="mask" style="display:{{mask}}"></view>
+
+	<view class="seleBox" bindtap="selectedColor">
+		<view data-id="guess" data-type="食品" style="color:{{guessColor}}">猜你喜欢</view>
+		<scroll-view scroll-x="true">
+			<view class="seleType">
+				<text wx:for="{{seleType}}" data-type="{{item.type}}" data-id="{{index}}"
+					style="color:{{item.color}}">{{item.type}}</text>
+			</view>
+		</scroll-view>
+	</view>
+
+	<view class="content">
+		<view class="goods1">
+			<view class="goods_item" wx:for="{{goodsList1}}" bindtap="onClickGoods" id="{{item._id}}">
+				<image src="{{item.carousel_img[0]}}" mode="widthFix"></image>
+				<text class="title">{{item.title}}</text>
+				<view class="money">
+					<view class="discount" style="display:{{item.ifDiscount}}"><text>卷</text> <text>{{item.discount}}元</text>
+					</view>
+					￥ {{item.bfprice - item.discount}}
+					<text class="before">{{item.bfprice}}</text>
+				</view>
+				<view class="sales">销量 {{item.cfav}}</view>
+			</view>
+		</view>
+		<view class="goods2">
+			<view class="goods_item" wx:for="{{goodsList2}}" bindtap="onClickGoods" id="{{item._id}}">
+				<image src="{{item.carousel_img[0]}}" mode="widthFix"></image>
+				<text class="title">{{item.title}}</text>
+				<view class="money">
+					<view class="discount" style="display:{{item.ifDiscount}}"><text>卷</text> <text>{{item.discount}}元</text>
+					</view>
+					￥ {{item.bfprice - item.discount}}
+					<text class="before">{{item.bfprice}}</text>
+				</view>
+				<view class="sales">销量 {{item.cfav}}</view>
+			</view>
+		</view>
+
+	</view>
+
+
+</view>
